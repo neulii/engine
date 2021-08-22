@@ -5,6 +5,18 @@
 #include <string>
 #include <iostream>
 
+void render(sf::RenderWindow &window);
+void update();
+
+
+
+
+sf::Font font;
+sf::RenderWindow window(sf::VideoMode(800,800),"MyGame");
+sf::Text fps_Label("FPS:" , font, 20);
+sf::Text text("Hello sfml",font,30);
+
+
 int main()
 {
 	sf::Clock loopTime;
@@ -17,15 +29,15 @@ int main()
 	int fps = 0;
 
 
-	sf::Font font;
+
 	
 	if(!font.loadFromFile("../resources/fonts/arial.ttf"))
 		std::cout << "font not found" << std::endl;
 
-	sf::Text text("Hello sfml",font,30);
+	
 		
 	
-	sf::Text fps_Label("FPS:" , font, 20);
+	
 	fps_Label.setPosition(10,10);
 	
 	text.setFillColor(sf::Color::Red);
@@ -36,10 +48,10 @@ int main()
 	sf::RectangleShape r(sf::Vector2f(50,30));
 	
 
-	sf::RenderWindow window(sf::VideoMode(800,800),"MyGame");
 	sf::Time timer;
 	loopStartTime = 0;
 	sf::Time superTime;
+	window.setFramerateLimit(60);
 
 	while (window.isOpen())
 	{
@@ -54,7 +66,7 @@ int main()
 		fps = 1000000/loopDuration;
 			
 		fps_Label.setString("FPS: " + std::to_string(fps));
-		std::cout << fps << std::endl;
+		//std::cout << fps << std::endl;
 		for (int i = 0; i<10000; i++)
 		{
 			;
@@ -76,6 +88,20 @@ int main()
 			
 
 		}
+		update();
+		render(window);
+
+	}
+
+	
+
+
+	return 0;
+}
+
+
+void render(sf::RenderWindow &window)
+{
 
 		window.clear(sf::Color::Black);
 		//	window.draw(r);
@@ -83,11 +109,11 @@ int main()
 		window.draw(fps_Label);
 
 		window.display();
-	}
-
-
-	return 0;
 }
+void update()
+{
 
+
+}
 
 

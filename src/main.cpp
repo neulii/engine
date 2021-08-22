@@ -7,6 +7,11 @@ int main()
 {
 	
 
+	sf::Font font;
+	if(!font.loadFromFile("arial.ttf"))
+		std::cout << "font not found" << std::endl;
+
+	sf::Text text("Hello sfml",font,50);
 
 
 	sf::RectangleShape r(sf::Vector2f(50,30));
@@ -36,6 +41,7 @@ int main()
 
 		window.clear(sf::Color::Black);
 		window.draw(r);
+ 		window.draw(text);
 
 		window.display();
 	}

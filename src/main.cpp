@@ -8,7 +8,7 @@ int main()
 	
 
 	sf::Font font;
-	if(!font.loadFromFile("arial.ttf"))
+	if(!font.loadFromFile("../resources/fonts/arial.ttf"))
 		std::cout << "font not found" << std::endl;
 
 	sf::Text text("Hello sfml",font,50);

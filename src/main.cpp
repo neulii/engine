@@ -5,8 +5,8 @@
 #include <string>
 #include <iostream>
 
-void render(sf::RenderWindow &window);
-void update();
+void render();
+void update(sf::Int64 loopDuration);
 
 
 
@@ -88,8 +88,8 @@ int main()
 			
 
 		}
-		update();
-		render(window);
+		update(loopDuration);
+		render();
 
 	}
 
@@ -100,7 +100,7 @@ int main()
 }
 
 
-void render(sf::RenderWindow &window)
+void render()
 {
 
 		window.clear(sf::Color::Black);
@@ -110,7 +110,7 @@ void render(sf::RenderWindow &window)
 
 		window.display();
 }
-void update()
+void update(sf::Int64 loopDuration)
 {
 
 

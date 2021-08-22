@@ -1,28 +1,66 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+
+#include <string>
 #include <iostream>
 
 int main()
 {
-	
+	sf::Clock loopTime;
+
+
+	sf::Int64 loopStartTime;
+	sf::Int64 loopEndTime;
+	sf::Int64 loopDuration;
+
+	int fps = 0;
+
 
 	sf::Font font;
+	
 	if(!font.loadFromFile("../resources/fonts/arial.ttf"))
 		std::cout << "font not found" << std::endl;
 
-	sf::Text text("Hello sfml",font,50);
+	sf::Text text("Hello sfml",font,30);
+		
+	
+	sf::Text fps_Label("FPS:" , font, 20);
+	fps_Label.setPosition(10,10);
+	
+	text.setFillColor(sf::Color::Red);
+	text.setPosition(300,300);
+
 
 
 	sf::RectangleShape r(sf::Vector2f(50,30));
 	
 
 	sf::RenderWindow window(sf::VideoMode(800,800),"MyGame");
+	sf::Time timer;
+	loopStartTime = 0;
+	sf::Time superTime;
 
 	while (window.isOpen())
 	{
-		
+		superTime = loopTime.getElapsedTime();
+		loopTime.restart();
 
+
+		//loopEndTime = loopStartTime;
+		//loopStartTime = timer.asMicroseconds();
+	//	loopDuration = loopEndTime - loopStartTime;
+		loopDuration = superTime.asMicroseconds();
+		fps = 1000000/loopDuration;
+			
+		fps_Label.setString("FPS: " + std::to_string(fps));
+		std::cout << fps << std::endl;
+		for (int i = 0; i<10000; i++)
+		{
+			;
+		}		
+		
+		
 		sf::Event event;
 
 		while(window.pollEvent(event))
@@ -40,8 +78,9 @@ int main()
 		}
 
 		window.clear(sf::Color::Black);
-		window.draw(r);
+		//	window.draw(r);
  		window.draw(text);
+		window.draw(fps_Label);
 
 		window.display();
 	}
